@@ -6,7 +6,6 @@ output:
   html_document: 
     keep_md: TRUE
 ---
-
 ```{r Global_options, echo = FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, highlight = TRUE, tidy = FALSE)
 ```
@@ -32,13 +31,14 @@ head(activity_complete)
 ####MEAN AND MEDIAN OF THE TOTAL NUMBER OF STEPS TAKEN PER DAY
 
 ```{r Mean_&_Median}
-Total_steps <- tapply(activity_complete$steps, activity_complete$date, sum)
-
+Total_steps <- tapply(activity$steps, activity$date, sum, na.rm = TRUE)
+print(mean(Total_steps))
+print(median(Total_steps))
 #Histogram of total number of steps taken each day
 hist(Total_steps, col = "grey", xlab = "Total Number of steps per day", ylab = "Frequency", main = "Histogram of Total Number of steps taken each day")
 dev.copy(png, file = "plot_1.png")
 dev.off()
-#Mean & Median of total number of steps taken each day
+#Mean & Median of total number of steps taken each day without missing values
 Mean <- aggregate(steps ~ date, activity_complete, mean)
 Median <- aggregate(steps ~ date, activity_complete, median)
 Mean_and_Median <- merge(Mean, Median, by.x = "date", by.y = "date", all = TRUE)
@@ -79,10 +79,12 @@ Activity <- arrange(Activity, date)
 
 #Histogram, Mean and Median of Total number of steps taken each day
 New_Total_steps <- aggregate(steps ~ date, Activity, sum)
+print(mean(New_Total_steps$steps))
+print(median(New_Total_steps$steps))
 hist(New_Total_steps$steps, col = "dark green", xlab = "Total number of steps taken per day", ylab = "Frequency", main = "Histogram of Total number of stpes taken each day")
 dev.copy(png, file = "plot_3.png")
 dev.off()
-#Impact on imupting missing data on the estimates of the total daily number of steps can be explained in accordance to the histogram where there is a gradual increase in the frequency of range of values (Total steps taken per day)
+
 New_Mean_steps <- aggregate(steps ~ date, Activity, mean)
 New_Median_steps <- aggregate(steps ~ date, Activity, median)
 New_mean_and_median <- merge(New_Mean_steps, New_Median_steps, by.x = "date", by.y = "date", all = TRUE)
@@ -117,4 +119,3 @@ xyplot(steps ~ interval | category, data = Average_steps, type = "l", layout = c
 dev.copy(png, file = "plot_4.png")
 dev.off()
 ```
-
