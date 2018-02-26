@@ -249,7 +249,12 @@ with(Total_interval, plot(interval, steps, type = &quot;l&quot;, xlab = &quot;5-
 <pre><code>## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
-<pre class="r"><code>Maximum_steps &lt;- filter(Total_interval, steps == max(Total_interval))
+<pre class="r"><code>#Maximum number of steps 
+print(filter(activity_complete, steps == max(activity_complete$steps)))</code></pre>
+<pre><code>##   steps       date interval
+## 1   806 2012-11-27      615</code></pre>
+<pre class="r"><code>#Maximum Total number of steps for each interval across all days
+Maximum_steps &lt;- filter(Total_interval, steps == max(Total_interval))
 print(Maximum_steps)</code></pre>
 <pre><code>##   interval steps
 ## 1      835 10927</code></pre>

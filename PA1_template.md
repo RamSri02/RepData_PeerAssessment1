@@ -198,6 +198,17 @@ library(dplyr)
 ```
 
 ```r
+#Maximum number of steps 
+print(filter(activity_complete, steps == max(activity_complete$steps)))
+```
+
+```
+##   steps       date interval
+## 1   806 2012-11-27      615
+```
+
+```r
+#Maximum Total number of steps for each interval across all days
 Maximum_steps <- filter(Total_interval, steps == max(Total_interval))
 print(Maximum_steps)
 ```
