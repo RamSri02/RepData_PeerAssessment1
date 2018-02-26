@@ -8,7 +8,6 @@ output:
 ---
 
 
-
 ####LOAD AND PREPROCESS/TRANSFORM THE DATA INTO SUITABLE FORMAT FOR ANALYSIS
 
 1. Load & Read the data using read.csv() setting the argument stringAsFactors = FALSE.
@@ -42,8 +41,23 @@ head(activity_complete)
 
 
 ```r
-Total_steps <- tapply(activity_complete$steps, activity_complete$date, sum)
+Total_steps <- tapply(activity$steps, activity$date, sum, na.rm = TRUE)
+print(mean(Total_steps))
+```
 
+```
+## [1] 9354.23
+```
+
+```r
+print(median(Total_steps))
+```
+
+```
+## [1] 10395
+```
+
+```r
 #Histogram of total number of steps taken each day
 hist(Total_steps, col = "grey", xlab = "Total Number of steps per day", ylab = "Frequency", main = "Histogram of Total Number of steps taken each day")
 ```
@@ -69,7 +83,7 @@ dev.off()
 ```
 
 ```r
-#Mean & Median of total number of steps taken each day
+#Mean & Median of total number of steps taken each day without missing values
 Mean <- aggregate(steps ~ date, activity_complete, mean)
 Median <- aggregate(steps ~ date, activity_complete, median)
 Mean_and_Median <- merge(Mean, Median, by.x = "date", by.y = "date", all = TRUE)
@@ -221,6 +235,22 @@ Activity <- arrange(Activity, date)
 
 #Histogram, Mean and Median of Total number of steps taken each day
 New_Total_steps <- aggregate(steps ~ date, Activity, sum)
+print(mean(New_Total_steps$steps))
+```
+
+```
+## [1] 9503.869
+```
+
+```r
+print(median(New_Total_steps$steps))
+```
+
+```
+## [1] 10395
+```
+
+```r
 hist(New_Total_steps$steps, col = "dark green", xlab = "Total number of steps taken per day", ylab = "Frequency", main = "Histogram of Total number of stpes taken each day")
 ```
 
@@ -245,7 +275,6 @@ dev.off()
 ```
 
 ```r
-#Impact on imupting missing data on the estimates of the total daily number of steps can be explained in accordance to the histogram where there is a gradual increase in the frequency of range of values (Total steps taken per day)
 New_Mean_steps <- aggregate(steps ~ date, Activity, mean)
 New_Median_steps <- aggregate(steps ~ date, Activity, median)
 New_mean_and_median <- merge(New_Mean_steps, New_Median_steps, by.x = "date", by.y = "date", all = TRUE)
@@ -378,4 +407,3 @@ dev.off()
 ## png 
 ##   2
 ```
-
