@@ -2,8 +2,9 @@
 title: "Reproducible Research: Peer Assessment 1"
 author: "Sriram Pasupathi Raj"
 date: "February 26, 2018"
-output: html_document
-keep_md: TRUE
+output: 
+  html_document: 
+    keep_md: TRUE
 ---
 
 ```{r Global_options, echo = FALSE}
