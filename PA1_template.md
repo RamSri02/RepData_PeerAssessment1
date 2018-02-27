@@ -152,7 +152,7 @@ print(Mean_and_Median)
 
 
 ```r
-Total_interval <- aggregate(steps ~ interval, activity_complete, sum)
+Total_interval <- aggregate(steps ~ interval, activity_complete, mean)
 with(Total_interval, plot(interval, steps, type = "l", xlab = "5-minute interval", ylab = "Average number of steps taken, averaged across all days", main = "Time series plot of Average daily activity pattern", col = "dark red"))
 ```
 
@@ -214,8 +214,8 @@ print(Maximum_steps)
 ```
 
 ```
-##   interval steps
-## 1      835 10927
+## [1] interval steps   
+## <0 rows> (or 0-length row.names)
 ```
 
 ####IMPUTING MISSING VALUES

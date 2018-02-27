@@ -49,7 +49,7 @@ print(Mean_and_Median)
 ####AVERAGE DAILY ACTIVITY PATTERN
 
 ```{r Daily_activity_pattern}
-Total_interval <- aggregate(steps ~ interval, activity_complete, sum)
+Total_interval <- aggregate(steps ~ interval, activity_complete, mean)
 with(Total_interval, plot(interval, steps, type = "l", xlab = "5-minute interval", ylab = "Average number of steps taken, averaged across all days", main = "Time series plot of Average daily activity pattern", col = "dark red"))
 dev.copy(png, file = "plot_2.png")
 dev.off()
